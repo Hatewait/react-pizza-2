@@ -1,4 +1,3 @@
-import React from 'react';
 import './scss/app.scss';
 
 import Home from './pages/Home';
@@ -18,14 +17,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-
-  /*  <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/pizza/:id" element={<FullPizza />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>*/
-
   );
 }
 
