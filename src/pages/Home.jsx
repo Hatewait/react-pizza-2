@@ -7,8 +7,9 @@ import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Pagination from '../components/Pagination';
 import { SearchContext } from '../App';
 import { useSelector, useDispatch } from 'react-redux';
-import {selectFilter, setCategoryId, setPageCount} from '../redux/slices/filterSlice';
-import {fetchPizzas, selectPizzaItems} from '../redux/slices/pizzasSlice';
+import { selectFilter, setCategoryId, setPageCount } from '../redux/slices/filterSlice';
+import { fetchPizzas, selectPizzaItems } from '../redux/slices/pizzasSlice';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const { pageCount: currentPage, categoryId, searchValue } = useSelector(selectFilter);
@@ -51,7 +52,7 @@ function Home() {
 
   }, [categoryId, sortType, searchValue, currentPage]) // didMount - []
 
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas = items.map((obj) => <Link to={`/pizza/${obj.id}`} key={obj.id}><PizzaBlock {...obj} /></Link>);
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
   return (
