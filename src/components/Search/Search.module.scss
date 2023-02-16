@@ -1,0 +1,42 @@
+.root {
+  position: relative;
+}
+
+.search {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  opacity: 0.7;
+  width: 20px;
+}
+
+.clear {
+  border: none;
+  background: transparent;
+
+  position: absolute;
+  top: 6px;
+  right: 13px;
+  transition: 2ms;
+
+  &:hover {
+    opacity: 0.3;
+    cursor: pointer;
+  }
+
+  svg {
+    width: 20px;
+    opacity: 0.7;
+    display: inline-block;
+  }
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 20px 12px 40px;
+  outline: none;
+  width: 300px;
+  border-radius: 10px;
+  font-size: 16px;
+
+}

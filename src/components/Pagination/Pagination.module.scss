@@ -1,0 +1,38 @@
+.root {
+  :global {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.selected a {
+        color: #ffffff;
+        background: #fe5f1e;
+      }
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border: 1px solid #fe5f1e;
+      border-radius: 30px;
+      height: 40px;
+      width: 40px;
+      margin-right: 30px;
+      cursor: pointer;
+      color: #fe5f1e;
+
+      &:hover {
+        a {
+          color: #ffffff;
+          background: #fe5f1e;
+        }
+      }
+    }
+  }
+}
