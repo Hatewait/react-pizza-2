@@ -10,7 +10,7 @@ import { selectFilter, setCategoryId, setPageCount } from '../redux/slices/filte
 import { fetchPizzas, selectPizzaItems } from '../redux/slices/pizzasSlice';
 import { Link } from 'react-router-dom';
 
-function Home() {
+const Home:React.FC = () => {
   const { pageCount: currentPage, categoryId, searchValue } = useSelector(selectFilter);
   //const { pageCount: currentPage, categoryId } = useSelector(state => state.filter);
   //const categoryId = useSelector(state => state.filter.categoryId); // вытащили из хранилища стор айдишник по дефолту - 0
@@ -18,14 +18,15 @@ function Home() {
   //const test = useSelector(state => state.filter)
 
   const { items, status } = useSelector(selectPizzaItems);
+  // @ts-ignore
   const sortType = useSelector(state => state.filter.sort.sortProperty); // вытащили из хранилища стор айдишник по дефолту - 0
   const dispatch = useDispatch();
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id))
   }
 
-  const onChangePage = (num) => {
+  const onChangePage = (num: number) => {
     dispatch(setPageCount(num))
   }
 
@@ -36,7 +37,9 @@ function Home() {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue  ? `&search=${searchValue}` : '';
 
+    // @ts-ignore
     dispatch(fetchPizzas({
+      // @ts-ignore
       sortBy,
       order,
       category,
@@ -51,7 +54,7 @@ function Home() {
 
   }, [categoryId, sortType, searchValue, currentPage]) // didMount - []
 
-  const pizzas = items.map((obj) => <Link to={`/pizza/${obj.id}`} key={obj.id}><PizzaBlock {...obj} /></Link>);
+  const pizzas = items.map((obj: any) => <Link to={`/pizza/${obj.id}`} key={obj.id}><PizzaBlock {...obj} /></Link>);
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
   return (
@@ -77,7 +80,7 @@ function Home() {
           {status === 'loading' ? skeletons : pizzas}
         </div>
 */}
-        <Pagination onChangePage={(number) => onChangePage(number)} />
+        <Pagination onChangePage={(number: number) => onChangePage(number)} />
       </div>
   )
 }
