@@ -5,10 +5,11 @@ import Sort from '../components/Sort';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Pagination from '../components/Pagination';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectFilter, setCategoryId, setPageCount } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaItems } from '../redux/slices/pizzasSlice';
 import { Link } from 'react-router-dom';
+import {useAppDispatch} from '../redux/store';
 
 const Home:React.FC = () => {
   const { pageCount: currentPage, categoryId, searchValue } = useSelector(selectFilter);
@@ -20,7 +21,7 @@ const Home:React.FC = () => {
   const { items, status } = useSelector(selectPizzaItems);
   // @ts-ignore
   const sortType = useSelector(state => state.filter.sort.sortProperty); // вытащили из хранилища стор айдишник по дефолту - 0
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id))
@@ -37,14 +38,12 @@ const Home:React.FC = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue  ? `&search=${searchValue}` : '';
 
-    // @ts-ignore
     dispatch(fetchPizzas({
-      // @ts-ignore
       sortBy,
       order,
       category,
       search,
-      currentPage,
+      currentPage: String(currentPage),
     }))
     window.scrollTo(0, 0);
   }
@@ -61,7 +60,7 @@ const Home:React.FC = () => {
       <div className="container">
         <div className="content__top">
           <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-          {/*<Sort value={sortType} onChangeSort={(obj) => setSortType(obj)} />*/}
+          {/*<SortItems value={sortType} onChangeSort={(obj) => setSortType(obj)} />*/}
           <Sort />
         </div>
         <h2 className="content__title">Все пиццы</h2>

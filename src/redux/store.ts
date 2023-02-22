@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
 import filter from './slices/filterSlice';
 import cart from './slices/cartSlice';
 import pizza from './slices/pizzasSlice';
 import sort from './slices/filterSlice';
 import pagination from './slices/filterSlice';
+import {useDispatch} from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     filter,
     sort,
     pagination,
@@ -16,3 +15,7 @@ export const store = configureStore({
     pizza,
   },
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch;
