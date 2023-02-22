@@ -8,7 +8,6 @@ import Pagination from '../components/Pagination';
 import { useSelector } from 'react-redux';
 import { selectFilter, setCategoryId, setPageCount } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaItems } from '../redux/slices/pizzasSlice';
-import { Link } from 'react-router-dom';
 import {useAppDispatch} from '../redux/store';
 
 const Home:React.FC = () => {
@@ -53,7 +52,7 @@ const Home:React.FC = () => {
 
   }, [categoryId, sortType, searchValue, currentPage]) // didMount - []
 
-  const pizzas = items.map((obj: any) => <Link to={`/pizza/${obj.id}`} key={obj.id}><PizzaBlock {...obj} /></Link>);
+  const pizzas = items.map((obj: any) => <PizzaBlock {...obj} />);
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
   return (
