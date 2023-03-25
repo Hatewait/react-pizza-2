@@ -81,6 +81,8 @@ const Home:React.FC = () => {
         <Pagination onChangePage={(number: number) => onChangePage(number)} />
       </div>
   )
+
+
 }
 
 export default Home;
